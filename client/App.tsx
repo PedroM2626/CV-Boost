@@ -47,24 +47,9 @@ const App = () => (
                 />
               }
             />
-            <Route
-              path="/login"
-              element={
-                <PlaceholderPage
-                  title="Sign In"
-                  description="Welcome back! Sign in to access your resumes and continue building your career."
-                />
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <PlaceholderPage
-                  title="Get Started"
-                  description="Join thousands of professionals who've transformed their careers with CV Boost. Create your account to get started."
-                />
-              }
-            />
+            <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
             <Route
               path="/help"
               element={
