@@ -30,7 +30,6 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [testing, setTesting] = useState(false);
 
   // Redirect if already authenticated
   useEffect(() => {
