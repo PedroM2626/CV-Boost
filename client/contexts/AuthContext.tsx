@@ -77,30 +77,48 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: fullName,
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+          },
         },
-      },
-    });
+      });
 
-    if (error) {
+      if (error) {
+        // Provide more specific error messages
+        let errorMessage = error.message;
+        if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
+          errorMessage = "There's an issue with the application configuration. Please contact support.";
+        } else if (error.message.includes('User already registered')) {
+          errorMessage = "An account with this email already exists. Try signing in instead.";
+        }
+
+        toast({
+          title: "Error creating account",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Account created!",
+          description: "Please check your email to verify your account.",
+        });
+      }
+
+      return { error };
+    } catch (networkError: any) {
+      const errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
       toast({
-        title: "Error creating account",
-        description: error.message,
+        title: "Connection error",
+        description: errorMessage,
         variant: "destructive",
       });
-    } else {
-      toast({
-        title: "Account created!",
-        description: "Please check your email to verify your account.",
-      });
+      return { error: { message: errorMessage } };
     }
-
-    return { error };
   };
 
   const signOut = async () => {
