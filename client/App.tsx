@@ -128,10 +128,14 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Handle React 18 createRoot properly for development
-const container = document.getElementById("root")!;
+// Handle React 18 createRoot properly for development and production
+const container = document.getElementById("root");
 
-// In development, prevent multiple createRoot calls
+if (!container) {
+  throw new Error("Root element not found. Make sure there's a div with id='root' in your HTML.");
+}
+
+// In development, prevent multiple createRoot calls during HMR
 if (import.meta.env.DEV) {
   const existingRoot = (container as any).__reactRoot;
   if (existingRoot) {
@@ -142,6 +146,6 @@ if (import.meta.env.DEV) {
     root.render(<App />);
   }
 } else {
-  // In production, just create the root normally
+  // In production, create the root normally
   createRoot(container).render(<App />);
 }
