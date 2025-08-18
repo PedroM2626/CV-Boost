@@ -128,12 +128,20 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Fix for React 18 createRoot warning during development
+// Handle React 18 createRoot properly for development
 const container = document.getElementById("root")!;
-if (!(container as any)._reactRoot) {
-  const root = createRoot(container);
-  (container as any)._reactRoot = root;
-  root.render(<App />);
+
+// In development, prevent multiple createRoot calls
+if (import.meta.env.DEV) {
+  const existingRoot = (container as any).__reactRoot;
+  if (existingRoot) {
+    existingRoot.render(<App />);
+  } else {
+    const root = createRoot(container);
+    (container as any).__reactRoot = root;
+    root.render(<App />);
+  }
 } else {
-  (container as any)._reactRoot.render(<App />);
+  // In production, just create the root normally
+  createRoot(container).render(<App />);
 }
