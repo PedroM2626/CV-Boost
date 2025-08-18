@@ -46,6 +46,28 @@ export default function Signup() {
     return null;
   };
 
+  const testConnection = async () => {
+    setTesting(true);
+    setError("");
+    try {
+      // Test basic connection
+      const { data, error } = await supabase
+        .from('resume_templates')
+        .select('count', { count: 'exact', head: true });
+
+      if (error) {
+        setError(`Connection test failed: ${error.message}`);
+      } else {
+        setError("");
+        alert('✅ Connection successful! Supabase is working correctly.');
+      }
+    } catch (err: any) {
+      setError(`Connection test failed: ${err.message}`);
+    } finally {
+      setTesting(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
