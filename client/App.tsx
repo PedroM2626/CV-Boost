@@ -138,6 +138,8 @@ function App() {
   );
 }
 
+export default App;
+
 // Handle React 18 createRoot properly for development and production
 const container = document.getElementById("root");
 
