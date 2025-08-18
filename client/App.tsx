@@ -11,6 +11,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import ResumeImprovement from "./pages/ResumeImprovement";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import PlaceholderPage from "./components/PlaceholderPage";
 
 const queryClient = new QueryClient();
