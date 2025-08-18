@@ -127,17 +127,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           title: "Error creating account",
           description: errorMessage,
           variant: "destructive",
-          action: error.message.includes('Invalid API key') ? (
-            <a
-              href="https://app.supabase.com/project/wmkqurcudreptjrqpqpf/auth/users"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs underline"
-            >
-              Open Supabase Settings
-            </a>
-          ) : undefined,
         });
+
+        // For API key errors, also log the solution URL
+        if (error.message.includes('Invalid API key')) {
+          console.log('��� Quick fix: Go to https://app.supabase.com/project/wmkqurcudreptjrqpqpf/auth/users and disable email confirmations');
+        }
 
         // Log detailed error for debugging
         console.error('Signup error details:', {
