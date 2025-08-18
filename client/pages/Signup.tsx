@@ -285,17 +285,6 @@ export default function Signup() {
             <div className="space-y-4">
               <Separator />
 
-              {/* Debug button - temporary */}
-              <div className="text-center">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => debugAuth()}
-                  className="text-xs text-muted-foreground"
-                >
-                  🔧 Debug Auth (Check Console)
-                </Button>
-              </div>
 
               <div className="text-center space-y-2">
                 <p className="text-sm text-muted-foreground">
