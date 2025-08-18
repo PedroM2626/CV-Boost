@@ -44,6 +44,22 @@ export default function Signup() {
     return null;
   };
 
+  const testSignup = async () => {
+    console.log('🧪 Running signup test...');
+    try {
+      const testEmail = `test-${Date.now()}@example.com`;
+      const testPassword = 'TestPassword123!';
+      const testName = 'Test User';
+
+      console.log('Testing with:', { testEmail, testPassword, testName });
+
+      const result = await signUp(testEmail, testPassword, testName);
+      console.log('Test result:', result);
+    } catch (error) {
+      console.error('Test failed:', error);
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
