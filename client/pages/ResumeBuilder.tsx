@@ -52,15 +52,15 @@ export default function ResumeBuilder() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [currentResume, setCurrentResume] = useState<any>(null);
   const [resumeData, setResumeData] = useState({
-    title: '',
+    title: "",
     personal: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      location: '',
-      title: '',
-      summary: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      location: "",
+      title: "",
+      summary: "",
     },
     experience: [],
     education: [],
@@ -69,9 +69,9 @@ export default function ResumeBuilder() {
 
   // Check if editing existing resume
   useEffect(() => {
-    const resumeId = searchParams.get('id');
+    const resumeId = searchParams.get("id");
     if (resumeId && resumes.length > 0) {
-      const resume = resumes.find(r => r.id === resumeId);
+      const resume = resumes.find((r) => r.id === resumeId);
       if (resume) {
         setCurrentResume(resume);
         setSelectedTemplate(resume.template_id);
@@ -86,7 +86,7 @@ export default function ResumeBuilder() {
   // Redirect if not authenticated
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [user, navigate]);
 
@@ -97,7 +97,8 @@ export default function ResumeBuilder() {
   const handleSaveResume = async () => {
     if (!selectedTemplate || !user) return;
 
-    const resumeTitle = resumeData.title || `Resume - ${new Date().toLocaleDateString()}`;
+    const resumeTitle =
+      resumeData.title || `Resume - ${new Date().toLocaleDateString()}`;
 
     if (currentResume) {
       // Update existing resume
@@ -258,7 +259,12 @@ export default function ResumeBuilder() {
                         id="resumeTitle"
                         placeholder="My Resume"
                         value={resumeData.title}
-                        onChange={(e) => setResumeData({...resumeData, title: e.target.value})}
+                        onChange={(e) =>
+                          setResumeData({
+                            ...resumeData,
+                            title: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -268,10 +274,15 @@ export default function ResumeBuilder() {
                           id="firstName"
                           placeholder="John"
                           value={resumeData.personal.firstName}
-                          onChange={(e) => setResumeData({
-                            ...resumeData,
-                            personal: {...resumeData.personal, firstName: e.target.value}
-                          })}
+                          onChange={(e) =>
+                            setResumeData({
+                              ...resumeData,
+                              personal: {
+                                ...resumeData.personal,
+                                firstName: e.target.value,
+                              },
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -280,10 +291,15 @@ export default function ResumeBuilder() {
                           id="lastName"
                           placeholder="Doe"
                           value={resumeData.personal.lastName}
-                          onChange={(e) => setResumeData({
-                            ...resumeData,
-                            personal: {...resumeData.personal, lastName: e.target.value}
-                          })}
+                          onChange={(e) =>
+                            setResumeData({
+                              ...resumeData,
+                              personal: {
+                                ...resumeData.personal,
+                                lastName: e.target.value,
+                              },
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -293,10 +309,15 @@ export default function ResumeBuilder() {
                         id="title"
                         placeholder="Software Engineer"
                         value={resumeData.personal.title}
-                        onChange={(e) => setResumeData({
-                          ...resumeData,
-                          personal: {...resumeData.personal, title: e.target.value}
-                        })}
+                        onChange={(e) =>
+                          setResumeData({
+                            ...resumeData,
+                            personal: {
+                              ...resumeData.personal,
+                              title: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -307,10 +328,15 @@ export default function ResumeBuilder() {
                           type="email"
                           placeholder="john@example.com"
                           value={resumeData.personal.email}
-                          onChange={(e) => setResumeData({
-                            ...resumeData,
-                            personal: {...resumeData.personal, email: e.target.value}
-                          })}
+                          onChange={(e) =>
+                            setResumeData({
+                              ...resumeData,
+                              personal: {
+                                ...resumeData.personal,
+                                email: e.target.value,
+                              },
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -319,10 +345,15 @@ export default function ResumeBuilder() {
                           id="phone"
                           placeholder="+1 (555) 123-4567"
                           value={resumeData.personal.phone}
-                          onChange={(e) => setResumeData({
-                            ...resumeData,
-                            personal: {...resumeData.personal, phone: e.target.value}
-                          })}
+                          onChange={(e) =>
+                            setResumeData({
+                              ...resumeData,
+                              personal: {
+                                ...resumeData.personal,
+                                phone: e.target.value,
+                              },
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -332,10 +363,15 @@ export default function ResumeBuilder() {
                         id="location"
                         placeholder="New York, NY"
                         value={resumeData.personal.location}
-                        onChange={(e) => setResumeData({
-                          ...resumeData,
-                          personal: {...resumeData.personal, location: e.target.value}
-                        })}
+                        onChange={(e) =>
+                          setResumeData({
+                            ...resumeData,
+                            personal: {
+                              ...resumeData.personal,
+                              location: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <div>
@@ -345,10 +381,15 @@ export default function ResumeBuilder() {
                         placeholder="Write a brief summary of your professional background..."
                         rows={4}
                         value={resumeData.personal.summary}
-                        onChange={(e) => setResumeData({
-                          ...resumeData,
-                          personal: {...resumeData.personal, summary: e.target.value}
-                        })}
+                        onChange={(e) =>
+                          setResumeData({
+                            ...resumeData,
+                            personal: {
+                              ...resumeData.personal,
+                              summary: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                   </CardContent>

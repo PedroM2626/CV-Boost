@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -13,7 +19,9 @@ import { Loader2, User, Mail, Shield, Trash2 } from "lucide-react";
 
 export default function Settings() {
   const { user, updateProfile, signOut } = useAuth();
-  const [fullName, setFullName] = useState(user?.user_metadata?.full_name || "");
+  const [fullName, setFullName] = useState(
+    user?.user_metadata?.full_name || "",
+  );
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -22,7 +30,9 @@ export default function Settings() {
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Please sign in to access settings</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              Please sign in to access settings
+            </h1>
             <Button asChild>
               <Link to="/login">Sign In</Link>
             </Button>
@@ -49,8 +59,16 @@ export default function Settings() {
   };
 
   const handleDeleteAccount = async () => {
-    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone and will permanently delete all your resumes and data.")) {
-      if (window.confirm("This will permanently delete your account and all data. Type 'DELETE' to confirm.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to delete your account? This action cannot be undone and will permanently delete all your resumes and data.",
+      )
+    ) {
+      if (
+        window.confirm(
+          "This will permanently delete your account and all data. Type 'DELETE' to confirm.",
+        )
+      ) {
         // In a real app, you'd call a delete account API
         alert("Account deletion would be processed here. This is a demo.");
       }
@@ -88,9 +106,14 @@ export default function Settings() {
 
               <div className="flex items-center gap-6">
                 <Avatar className="h-20 w-20">
-                  <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name} />
+                  <AvatarImage
+                    src={user.user_metadata?.avatar_url}
+                    alt={user.user_metadata?.full_name}
+                  />
                   <AvatarFallback className="text-lg">
-                    {user.user_metadata?.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                    {user.user_metadata?.full_name?.charAt(0) ||
+                      user.email?.charAt(0) ||
+                      "U"}
                   </AvatarFallback>
                 </Avatar>
                 <div>
@@ -158,7 +181,9 @@ export default function Settings() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label className="text-sm font-medium">Account ID</Label>
-                  <p className="text-sm text-muted-foreground font-mono">{user.id}</p>
+                  <p className="text-sm text-muted-foreground font-mono">
+                    {user.id}
+                  </p>
                 </div>
                 <div>
                   <Label className="text-sm font-medium">Member Since</Label>
@@ -167,7 +192,9 @@ export default function Settings() {
                   </p>
                 </div>
                 <div>
-                  <Label className="text-sm font-medium">Subscription Plan</Label>
+                  <Label className="text-sm font-medium">
+                    Subscription Plan
+                  </Label>
                   <p className="text-sm text-muted-foreground">Free Plan</p>
                 </div>
                 <div>
@@ -199,23 +226,21 @@ export default function Settings() {
                     Last updated: Unknown
                   </p>
                 </div>
-                <Button variant="outline">
-                  Change Password
-                </Button>
+                <Button variant="outline">Change Password</Button>
               </div>
-              
+
               <Separator />
-              
+
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-medium">Two-Factor Authentication</h4>
+                  <h4 className="text-sm font-medium">
+                    Two-Factor Authentication
+                  </h4>
                   <p className="text-sm text-muted-foreground">
                     Add an extra layer of security to your account
                   </p>
                 </div>
-                <Button variant="outline">
-                  Enable 2FA
-                </Button>
+                <Button variant="outline">Enable 2FA</Button>
               </div>
             </CardContent>
           </Card>

@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -95,9 +101,12 @@ export default function Signup() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
-              <CardTitle className="text-2xl font-bold mb-2">Account Created!</CardTitle>
+              <CardTitle className="text-2xl font-bold mb-2">
+                Account Created!
+              </CardTitle>
               <CardDescription className="mb-6">
-                We've sent you a confirmation email. Please check your inbox and click the verification link to activate your account.
+                We've sent you a confirmation email. Please check your inbox and
+                click the verification link to activate your account.
               </CardDescription>
               <div className="space-y-4">
                 <Button asChild className="w-full">
@@ -235,10 +244,15 @@ export default function Signup() {
                 <Checkbox
                   id="terms"
                   checked={acceptedTerms}
-                  onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
+                  onCheckedChange={(checked) =>
+                    setAcceptedTerms(checked === true)
+                  }
                   disabled={loading}
                 />
-                <Label htmlFor="terms" className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                <Label
+                  htmlFor="terms"
+                  className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
                   I agree to the{" "}
                   <Link to="/terms" className="text-primary hover:underline">
                     Terms of Service
@@ -250,7 +264,11 @@ export default function Signup() {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full" disabled={loading || !acceptedTerms}>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loading || !acceptedTerms}
+              >
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -264,7 +282,7 @@ export default function Signup() {
 
             <div className="space-y-4">
               <Separator />
-              
+
               <div className="text-center space-y-2">
                 <p className="text-sm text-muted-foreground">
                   Already have an account?

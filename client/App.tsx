@@ -29,32 +29,60 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/builder" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
-          <Route path="/improve" element={<ProtectedRoute><ResumeImprovement /></ProtectedRoute>} />
-          <Route
-            path="/recruiters"
-            element={
-              <ProtectedRoute>
+            <Route
+              path="/builder"
+              element={
+                <ProtectedRoute>
+                  <ResumeBuilder />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/improve"
+              element={
+                <ProtectedRoute>
+                  <ResumeImprovement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/recruiters"
+              element={
+                <ProtectedRoute>
+                  <PlaceholderPage
+                    title="Recruiter Dashboard"
+                    description="Upload and analyze multiple resumes with our advanced parsing tools. Extract structured data and find the best candidates faster."
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pricing"
+              element={
                 <PlaceholderPage
-                  title="Recruiter Dashboard"
-                  description="Upload and analyze multiple resumes with our advanced parsing tools. Extract structured data and find the best candidates faster."
+                  title="Pricing Plans"
+                  description="Choose the perfect plan for your needs. Start free and upgrade as you grow your career or business."
                 />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/pricing"
-            element={
-              <PlaceholderPage
-                title="Pricing Plans"
-                description="Choose the perfect plan for your needs. Start free and upgrade as you grow your career or business."
-              />
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/help"
               element={

@@ -4,20 +4,32 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useResumes } from "@/hooks/useResumes";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Plus, 
-  FileText, 
-  Edit, 
-  Trash2, 
-  Download, 
+import {
+  Plus,
+  FileText,
+  Edit,
+  Trash2,
+  Download,
   Eye,
   Calendar,
   MoreVertical,
-  Copy
+  Copy,
 } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { formatDistanceToNow } from "date-fns";
 
 export default function Dashboard() {
@@ -29,7 +41,9 @@ export default function Dashboard() {
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Please sign in to access your dashboard</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              Please sign in to access your dashboard
+            </h1>
             <Button asChild>
               <Link to="/login">Sign In</Link>
             </Button>
@@ -40,7 +54,11 @@ export default function Dashboard() {
   }
 
   const handleDeleteResume = async (id: string, title: string) => {
-    if (window.confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) {
+    if (
+      window.confirm(
+        `Are you sure you want to delete "${title}"? This action cannot be undone.`,
+      )
+    ) {
       await deleteResumeById(id);
     }
   };
@@ -56,7 +74,7 @@ export default function Dashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Welcome back, {user.user_metadata?.full_name || 'User'}!
+              Welcome back, {user.user_metadata?.full_name || "User"}!
             </h1>
             <p className="text-gray-600 mt-1">
               Manage your resumes and boost your career
@@ -82,17 +100,19 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Resumes</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Total Resumes
+              </CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{resumes.length}</div>
               <p className="text-xs text-muted-foreground">
-                {resumes.filter(r => r.is_published).length} published
+                {resumes.filter((r) => r.is_published).length} published
               </p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Plan</CardTitle>
@@ -108,16 +128,20 @@ export default function Dashboard() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Last Activity</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Last Activity
+              </CardTitle>
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {resumes.length > 0 ? formatDistanceToNow(new Date(resumes[0].updated_at), { addSuffix: true }) : 'Never'}
+                {resumes.length > 0
+                  ? formatDistanceToNow(new Date(resumes[0].updated_at), {
+                      addSuffix: true,
+                    })
+                  : "Never"}
               </div>
-              <p className="text-xs text-muted-foreground">
-                Resume updated
-              </p>
+              <p className="text-xs text-muted-foreground">Resume updated</p>
             </CardContent>
           </Card>
         </div>
@@ -169,18 +193,27 @@ export default function Dashboard() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {resumes.map((resume) => (
-                <Card key={resume.id} className="hover:shadow-lg transition-shadow">
+                <Card
+                  key={resume.id}
+                  className="hover:shadow-lg transition-shadow"
+                >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <CardTitle className="text-lg line-clamp-1">{resume.title}</CardTitle>
+                        <CardTitle className="text-lg line-clamp-1">
+                          {resume.title}
+                        </CardTitle>
                         <CardDescription className="text-sm">
                           Template: {resume.template_id}
                         </CardDescription>
                       </div>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
+                          >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -200,12 +233,16 @@ export default function Dashboard() {
                             Download
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
-                          <DropdownMenuItem onClick={() => handleDuplicateResume(resume)}>
+                          <DropdownMenuItem
+                            onClick={() => handleDuplicateResume(resume)}
+                          >
                             <Copy className="h-4 w-4 mr-2" />
                             Duplicate
                           </DropdownMenuItem>
-                          <DropdownMenuItem 
-                            onClick={() => handleDeleteResume(resume.id, resume.title)}
+                          <DropdownMenuItem
+                            onClick={() =>
+                              handleDeleteResume(resume.id, resume.title)
+                            }
                             className="text-red-600"
                           >
                             <Trash2 className="h-4 w-4 mr-2" />
@@ -215,11 +252,16 @@ export default function Dashboard() {
                       </DropdownMenu>
                     </div>
                     <div className="flex items-center gap-2 mt-2">
-                      <Badge variant={resume.is_published ? "default" : "secondary"}>
+                      <Badge
+                        variant={resume.is_published ? "default" : "secondary"}
+                      >
                         {resume.is_published ? "Published" : "Draft"}
                       </Badge>
                       <span className="text-xs text-gray-500">
-                        Updated {formatDistanceToNow(new Date(resume.updated_at), { addSuffix: true })}
+                        Updated{" "}
+                        {formatDistanceToNow(new Date(resume.updated_at), {
+                          addSuffix: true,
+                        })}
                       </span>
                     </div>
                   </CardHeader>
@@ -231,7 +273,12 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <Button size="sm" variant="outline" className="flex-1" asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1"
+                        asChild
+                      >
                         <Link to={`/builder?id=${resume.id}`}>
                           <Edit className="h-3 w-3 mr-1" />
                           Edit
@@ -259,7 +306,11 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-2" asChild>
+              <Button
+                variant="outline"
+                className="h-auto p-6 flex flex-col items-center space-y-2"
+                asChild
+              >
                 <Link to="/builder">
                   <Plus className="h-8 w-8 text-primary" />
                   <span className="font-medium">Create New Resume</span>
@@ -268,8 +319,12 @@ export default function Dashboard() {
                   </span>
                 </Link>
               </Button>
-              
-              <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-2" asChild>
+
+              <Button
+                variant="outline"
+                className="h-auto p-6 flex flex-col items-center space-y-2"
+                asChild
+              >
                 <Link to="/improve">
                   <FileText className="h-8 w-8 text-primary" />
                   <span className="font-medium">Improve Existing</span>
@@ -278,8 +333,12 @@ export default function Dashboard() {
                   </span>
                 </Link>
               </Button>
-              
-              <Button variant="outline" className="h-auto p-6 flex flex-col items-center space-y-2" asChild>
+
+              <Button
+                variant="outline"
+                className="h-auto p-6 flex flex-col items-center space-y-2"
+                asChild
+              >
                 <Link to="/pricing">
                   <Badge className="h-8 w-8 rounded-full bg-gradient-to-r from-primary to-accent text-white border-0 flex items-center justify-center p-0">
                     ✨
