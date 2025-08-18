@@ -14,6 +14,7 @@ import ResumeImprovement from "./pages/ResumeImprovement";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
 import PlaceholderPage from "./components/PlaceholderPage";
 
 const queryClient = new QueryClient();
