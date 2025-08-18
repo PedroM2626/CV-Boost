@@ -135,12 +135,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         // Log detailed error for debugging
-        console.error('Signup error details:', {
-          message: error.message,
-          status: (error as any).status,
-          statusCode: (error as any).statusCode,
-          error: error
-        });
+        console.error('Signup error details:');
+        console.error('- Message:', error.message);
+        console.error('- Status:', (error as any).status);
+        console.error('- Status Code:', (error as any).statusCode);
+        console.error('- Full error object:', JSON.stringify(error, null, 2));
+        console.error('- Error keys:', Object.keys(error));
       } else {
         toast({
           title: "Account created!",
