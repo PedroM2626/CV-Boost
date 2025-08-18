@@ -252,19 +252,52 @@ export default function ResumeBuilder() {
                     <CardTitle>Personal Information</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
+                    <div className="space-y-2 mb-4">
+                      <Label htmlFor="resumeTitle">Resume Title</Label>
+                      <Input
+                        id="resumeTitle"
+                        placeholder="My Resume"
+                        value={resumeData.title}
+                        onChange={(e) => setResumeData({...resumeData, title: e.target.value})}
+                      />
+                    </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="firstName">First Name</Label>
-                        <Input id="firstName" placeholder="John" />
+                        <Input
+                          id="firstName"
+                          placeholder="John"
+                          value={resumeData.personal.firstName}
+                          onChange={(e) => setResumeData({
+                            ...resumeData,
+                            personal: {...resumeData.personal, firstName: e.target.value}
+                          })}
+                        />
                       </div>
                       <div>
                         <Label htmlFor="lastName">Last Name</Label>
-                        <Input id="lastName" placeholder="Doe" />
+                        <Input
+                          id="lastName"
+                          placeholder="Doe"
+                          value={resumeData.personal.lastName}
+                          onChange={(e) => setResumeData({
+                            ...resumeData,
+                            personal: {...resumeData.personal, lastName: e.target.value}
+                          })}
+                        />
                       </div>
                     </div>
                     <div>
                       <Label htmlFor="title">Professional Title</Label>
-                      <Input id="title" placeholder="Software Engineer" />
+                      <Input
+                        id="title"
+                        placeholder="Software Engineer"
+                        value={resumeData.personal.title}
+                        onChange={(e) => setResumeData({
+                          ...resumeData,
+                          personal: {...resumeData.personal, title: e.target.value}
+                        })}
+                      />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -273,16 +306,37 @@ export default function ResumeBuilder() {
                           id="email"
                           type="email"
                           placeholder="john@example.com"
+                          value={resumeData.personal.email}
+                          onChange={(e) => setResumeData({
+                            ...resumeData,
+                            personal: {...resumeData.personal, email: e.target.value}
+                          })}
                         />
                       </div>
                       <div>
                         <Label htmlFor="phone">Phone</Label>
-                        <Input id="phone" placeholder="+1 (555) 123-4567" />
+                        <Input
+                          id="phone"
+                          placeholder="+1 (555) 123-4567"
+                          value={resumeData.personal.phone}
+                          onChange={(e) => setResumeData({
+                            ...resumeData,
+                            personal: {...resumeData.personal, phone: e.target.value}
+                          })}
+                        />
                       </div>
                     </div>
                     <div>
                       <Label htmlFor="location">Location</Label>
-                      <Input id="location" placeholder="New York, NY" />
+                      <Input
+                        id="location"
+                        placeholder="New York, NY"
+                        value={resumeData.personal.location}
+                        onChange={(e) => setResumeData({
+                          ...resumeData,
+                          personal: {...resumeData.personal, location: e.target.value}
+                        })}
+                      />
                     </div>
                     <div>
                       <Label htmlFor="summary">Professional Summary</Label>
@@ -290,6 +344,11 @@ export default function ResumeBuilder() {
                         id="summary"
                         placeholder="Write a brief summary of your professional background..."
                         rows={4}
+                        value={resumeData.personal.summary}
+                        onChange={(e) => setResumeData({
+                          ...resumeData,
+                          personal: {...resumeData.personal, summary: e.target.value}
+                        })}
                       />
                     </div>
                   </CardContent>
