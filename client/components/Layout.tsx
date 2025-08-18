@@ -155,16 +155,50 @@ export default function Layout({ children }: LayoutProps) {
                 );
               })}
               <div className="pt-4 space-y-2">
-                <Button variant="ghost" className="w-full justify-start" asChild>
-                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                    Sign In
-                  </Link>
-                </Button>
-                <Button className="w-full" asChild>
-                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
+                {user ? (
+                  <>
+                    <div className="px-3 py-2 text-sm">
+                      <p className="font-medium">{user.user_metadata?.full_name || 'User'}</p>
+                      <p className="text-muted-foreground">{user.email}</p>
+                    </div>
+                    <Button variant="ghost" className="w-full justify-start" asChild>
+                      <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                        <User className="mr-2 h-4 w-4" />
+                        Dashboard
+                      </Link>
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start" asChild>
+                      <Link to="/settings" onClick={() => setMobileMenuOpen(false)}>
+                        <Settings className="mr-2 h-4 w-4" />
+                        Settings
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      onClick={() => {
+                        signOut();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="ghost" className="w-full justify-start" asChild>
+                      <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                        Sign In
+                      </Link>
+                    </Button>
+                    <Button className="w-full" asChild>
+                      <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                        Get Started
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
