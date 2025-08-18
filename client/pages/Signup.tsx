@@ -312,6 +312,21 @@ export default function Signup() {
             <div className="space-y-4">
               <Separator />
 
+              {/* Debug Test Button */}
+              <div className="text-center">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={testSignup}
+                  className="text-xs text-muted-foreground"
+                  type="button"
+                >
+                  🧪 Test Signup (Check Console)
+                </Button>
+                <p className="text-xs text-muted-foreground mt-1">
+                  This will test signup with a random email and log details to console
+                </p>
+              </div>
 
               <div className="text-center space-y-2">
                 <p className="text-sm text-muted-foreground">
