@@ -226,6 +226,9 @@ export default function ResumeBuilder() {
               <Eye className="h-4 w-4 mr-2" />
               Preview
             </Button>
+            <Button variant="outline" onClick={handleSaveResume}>
+              💾 Save
+            </Button>
             <Button>
               <Download className="h-4 w-4 mr-2" />
               Download PDF
