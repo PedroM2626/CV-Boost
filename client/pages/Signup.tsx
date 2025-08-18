@@ -307,25 +307,6 @@ export default function Signup() {
             <div className="space-y-4">
               <Separator />
 
-              {/* Debug: Test Connection Button */}
-              <div className="text-center">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={testConnection}
-                  disabled={testing}
-                  className="text-xs text-muted-foreground"
-                >
-                  {testing ? (
-                    <>
-                      <Loader2 className="mr-2 h-3 w-3 animate-spin" />
-                      Testing...
-                    </>
-                  ) : (
-                    "🔧 Test Connection"
-                  )}
-                </Button>
-              </div>
 
               <div className="text-center space-y-2">
                 <p className="text-sm text-muted-foreground">
