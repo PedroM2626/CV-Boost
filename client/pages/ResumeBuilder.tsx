@@ -135,54 +135,69 @@ export default function ResumeBuilder() {
           </div>
 
           {/* Template Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {templates.map((template) => (
-              <Card
-                key={template.id}
-                className="relative cursor-pointer hover:shadow-lg transition-shadow group"
-                onClick={() => handleTemplateSelect(template.id)}
-              >
-                {template.isPremium && (
-                  <Badge className="absolute top-3 right-3 bg-yellow-500 text-yellow-900 z-10">
-                    <Crown className="h-3 w-3 mr-1" />
-                    Pro
-                  </Badge>
-                )}
-                <CardHeader className="p-0">
-                  <div className="aspect-[3/4] bg-gray-100 rounded-t-lg flex items-center justify-center">
-                    <div
-                      className={`w-3/4 h-5/6 bg-white shadow-md rounded border-l-4 border-${template.color}-500`}
-                    >
-                      <div className="p-4 space-y-2">
-                        <div className="h-3 bg-gray-300 rounded w-2/3"></div>
-                        <div className="h-2 bg-gray-200 rounded w-full"></div>
-                        <div className="h-2 bg-gray-200 rounded w-3/4"></div>
-                        <div className="mt-4 space-y-1">
-                          <div className="h-2 bg-gray-300 rounded w-1/2"></div>
-                          <div className="h-1 bg-gray-200 rounded w-full"></div>
-                          <div className="h-1 bg-gray-200 rounded w-4/5"></div>
+          {templatesLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {[...Array(4)].map((_, i) => (
+                <Card key={i} className="animate-pulse">
+                  <CardHeader className="p-0">
+                    <div className="aspect-[3/4] bg-gray-200 rounded-t-lg"></div>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-full mb-4"></div>
+                    <div className="h-8 bg-gray-200 rounded"></div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {templates.map((template) => (
+                <Card
+                  key={template.id}
+                  className="relative cursor-pointer hover:shadow-lg transition-shadow group"
+                  onClick={() => handleTemplateSelect(template.id)}
+                >
+                  {template.is_premium && (
+                    <Badge className="absolute top-3 right-3 bg-yellow-500 text-yellow-900 z-10">
+                      <Crown className="h-3 w-3 mr-1" />
+                      Pro
+                    </Badge>
+                  )}
+                  <CardHeader className="p-0">
+                    <div className="aspect-[3/4] bg-gray-100 rounded-t-lg flex items-center justify-center">
+                      <div className="w-3/4 h-5/6 bg-white shadow-md rounded border-l-4 border-primary">
+                        <div className="p-4 space-y-2">
+                          <div className="h-3 bg-gray-300 rounded w-2/3"></div>
+                          <div className="h-2 bg-gray-200 rounded w-full"></div>
+                          <div className="h-2 bg-gray-200 rounded w-3/4"></div>
+                          <div className="mt-4 space-y-1">
+                            <div className="h-2 bg-gray-300 rounded w-1/2"></div>
+                            <div className="h-1 bg-gray-200 rounded w-full"></div>
+                            <div className="h-1 bg-gray-200 rounded w-4/5"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <CardTitle className="text-lg mb-2">
-                    {template.name}
-                  </CardTitle>
-                  <CardDescription className="text-sm">
-                    {template.description}
-                  </CardDescription>
-                  <Button
-                    className="w-full mt-4 group-hover:bg-primary group-hover:text-white transition-colors"
-                    variant="outline"
-                  >
-                    Use This Template
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <CardTitle className="text-lg mb-2">
+                      {template.name}
+                    </CardTitle>
+                    <CardDescription className="text-sm">
+                      {template.description}
+                    </CardDescription>
+                    <Button
+                      className="w-full mt-4 group-hover:bg-primary group-hover:text-white transition-colors"
+                      variant="outline"
+                    >
+                      Use This Template
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
 
           {/* Back to Home */}
           <div className="text-center">
