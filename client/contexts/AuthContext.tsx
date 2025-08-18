@@ -112,16 +112,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         // Provide more specific error messages
         let errorMessage = error.message;
+
         if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
-          errorMessage = "There's an issue with the application configuration. Please contact support.";
+          errorMessage = "Configuration issue: The application needs to have email settings configured in Supabase. Please disable email confirmation in your Supabase Auth settings or configure an email provider.";
         } else if (error.message.includes('User already registered')) {
           errorMessage = "An account with this email already exists. Try signing in instead.";
+        } else if (error.message.includes('signup_disabled')) {
+          errorMessage = "Account creation is currently disabled. Please contact support.";
+        } else if (error.message.includes('email')) {
+          errorMessage = "Email configuration issue. Please check Supabase Auth settings.";
         }
 
         toast({
           title: "Error creating account",
           description: errorMessage,
           variant: "destructive",
+        });
+
+        // Log detailed error for debugging
+        console.error('Signup error details:', {
+          message: error.message,
+          status: (error as any).status,
+          statusCode: (error as any).statusCode,
+          error: error
         });
       } else {
         toast({
