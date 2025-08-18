@@ -43,52 +43,80 @@ interface ResumeSection {
 }
 
 export default function ResumeBuilder() {
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-  const [resumeSections, setResumeSections] = useState<ResumeSection[]>([
-    { id: "1", type: "personal", title: "Personal Information", content: {} },
-    { id: "2", type: "summary", title: "Professional Summary", content: "" },
-    { id: "3", type: "experience", title: "Work Experience", content: [] },
-    { id: "4", type: "education", title: "Education", content: [] },
-    { id: "5", type: "skills", title: "Skills", content: [] },
-  ]);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { templates, loading: templatesLoading } = useTemplates();
+  const { createResume, updateResumeById, resumes } = useResumes();
 
-  const templates = [
-    {
-      id: "modern",
-      name: "Modern Professional",
-      description: "Clean and contemporary design perfect for tech roles",
-      preview: "/api/placeholder/300/400",
-      isPremium: false,
-      color: "blue",
+  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [currentResume, setCurrentResume] = useState<any>(null);
+  const [resumeData, setResumeData] = useState({
+    title: '',
+    personal: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      location: '',
+      title: '',
+      summary: '',
     },
-    {
-      id: "classic",
-      name: "Classic Executive",
-      description: "Traditional format ideal for corporate positions",
-      preview: "/api/placeholder/300/400",
-      isPremium: false,
-      color: "gray",
-    },
-    {
-      id: "creative",
-      name: "Creative Designer",
-      description: "Stand out with this creative and colorful template",
-      preview: "/api/placeholder/300/400",
-      isPremium: true,
-      color: "purple",
-    },
-    {
-      id: "minimal",
-      name: "Minimal Clean",
-      description: "Simple and elegant design that highlights content",
-      preview: "/api/placeholder/300/400",
-      isPremium: true,
-      color: "green",
-    },
-  ];
+    experience: [],
+    education: [],
+    skills: [],
+  });
+
+  // Check if editing existing resume
+  useEffect(() => {
+    const resumeId = searchParams.get('id');
+    if (resumeId && resumes.length > 0) {
+      const resume = resumes.find(r => r.id === resumeId);
+      if (resume) {
+        setCurrentResume(resume);
+        setSelectedTemplate(resume.template_id);
+        setResumeData({
+          title: resume.title,
+          ...resume.content,
+        });
+      }
+    }
+  }, [searchParams, resumes]);
+
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   const handleTemplateSelect = (templateId: string) => {
     setSelectedTemplate(templateId);
+  };
+
+  const handleSaveResume = async () => {
+    if (!selectedTemplate || !user) return;
+
+    const resumeTitle = resumeData.title || `Resume - ${new Date().toLocaleDateString()}`;
+
+    if (currentResume) {
+      // Update existing resume
+      await updateResumeById(currentResume.id, {
+        title: resumeTitle,
+        template_id: selectedTemplate,
+        content: resumeData,
+      });
+    } else {
+      // Create new resume
+      const { data } = await createResume({
+        title: resumeTitle,
+        template_id: selectedTemplate,
+        content: resumeData,
+      });
+      if (data) {
+        navigate(`/builder?id=${data.id}`);
+      }
+    }
   };
 
   if (!selectedTemplate) {
