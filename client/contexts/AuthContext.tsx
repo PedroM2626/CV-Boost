@@ -28,6 +28,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Debug: Log environment info on initialization
+    console.log('🔧 AuthProvider initialized');
+    console.log('- Environment:', import.meta.env.MODE);
+    console.log('- Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
+    console.log('- API key (first 20 chars):', import.meta.env.VITE_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
