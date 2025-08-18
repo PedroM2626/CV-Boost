@@ -60,20 +60,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
+      if (error) {
+        // Provide more specific error messages
+        let errorMessage = error.message;
+        if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
+          errorMessage = "There's an issue with the application configuration. Please contact support.";
+        } else if (error.message.includes('Invalid login credentials')) {
+          errorMessage = "Invalid email or password. Please check your credentials and try again.";
+        } else if (error.message.includes('Email not confirmed')) {
+          errorMessage = "Please check your email and click the verification link before signing in.";
+        }
+
+        toast({
+          title: "Error signing in",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      }
+
+      return { error };
+    } catch (networkError: any) {
+      const errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
       toast({
-        title: "Error signing in",
-        description: error.message,
+        title: "Connection error",
+        description: errorMessage,
         variant: "destructive",
       });
+      return { error: { message: errorMessage } };
     }
-
-    return { error };
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
