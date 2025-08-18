@@ -150,6 +150,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error };
     } catch (networkError: any) {
+      console.error('Network/Exception error during signup:');
+      console.error('- Error message:', networkError?.message || 'Unknown error');
+      console.error('- Error type:', typeof networkError);
+      console.error('- Full error:', JSON.stringify(networkError, Object.getOwnPropertyNames(networkError), 2));
+
       const errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
       toast({
         title: "Connection error",
