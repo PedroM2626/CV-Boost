@@ -72,13 +72,25 @@ export default function Signup() {
     }
 
     try {
+      console.log('🚀 Starting signup process...');
+      console.log('- Email:', email);
+      console.log('- Full Name:', fullName);
+      console.log('- Password length:', password.length);
+
       const { error } = await signUp(email, password, fullName);
+
+      console.log('📋 Signup result received');
+      console.log('- Has error:', !!error);
+
       if (error) {
+        console.log('❌ Signup failed with error:', error);
         setError(error.message);
       } else {
+        console.log('✅ Signup successful!');
         setSuccess(true);
       }
     } catch (err) {
+      console.error('💥 Unexpected error during signup:', err);
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);
