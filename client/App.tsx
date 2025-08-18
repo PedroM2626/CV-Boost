@@ -148,16 +148,30 @@ if (!container) {
 }
 
 // In development, prevent multiple createRoot calls during HMR
-if (import.meta.env.DEV) {
-  const existingRoot = (container as any).__reactRoot;
-  if (existingRoot) {
-    existingRoot.render(<App />);
+try {
+  if (import.meta.env.DEV) {
+    const existingRoot = (container as any).__reactRoot;
+    if (existingRoot) {
+      existingRoot.render(<App />);
+    } else {
+      const root = createRoot(container);
+      (container as any).__reactRoot = root;
+      root.render(<App />);
+    }
   } else {
-    const root = createRoot(container);
-    (container as any).__reactRoot = root;
-    root.render(<App />);
+    // In production, create the root normally
+    createRoot(container).render(<App />);
   }
-} else {
-  // In production, create the root normally
-  createRoot(container).render(<App />);
+} catch (error) {
+  console.error('Failed to render React app:', error);
+  // Fallback error display
+  container.innerHTML = `
+    <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+      <h1 style="color: #dc3545;">Application Error</h1>
+      <p>Sorry, there was an error loading the application. Please refresh the page.</p>
+      <button onclick="window.location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Refresh Page
+      </button>
+    </div>
+  `;
 }
