@@ -13,6 +13,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navigation = [
     { name: "Resume Builder", href: "/builder", icon: FileText },
