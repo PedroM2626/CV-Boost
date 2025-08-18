@@ -114,7 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         let errorMessage = error.message;
 
         if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
-          errorMessage = "Configuration issue: The application needs to have email settings configured in Supabase. Please disable email confirmation in your Supabase Auth settings or configure an email provider.";
+          errorMessage = "🔧 Supabase Configuration Required: Please go to your Supabase dashboard > Authentication > Settings and either disable 'Enable email confirmations' or configure an email provider.";
         } else if (error.message.includes('User already registered')) {
           errorMessage = "An account with this email already exists. Try signing in instead.";
         } else if (error.message.includes('signup_disabled')) {
