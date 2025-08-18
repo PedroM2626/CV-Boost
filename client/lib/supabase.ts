@@ -7,6 +7,16 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error("Missing Supabase environment variables");
 }
 
+// Validate that the environment variables look correct
+if (!supabaseUrl.includes('supabase.co')) {
+  console.warn('⚠️ Supabase URL may be incorrect:', supabaseUrl);
+}
+
+if (!supabaseAnonKey.startsWith('eyJ')) {
+  console.warn('⚠️ Supabase anon key may be incorrect format');
+}
+
+console.log('✅ Supabase client configured successfully');
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Database Types
