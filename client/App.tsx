@@ -144,7 +144,9 @@ export default App;
 const container = document.getElementById("root");
 
 if (!container) {
-  throw new Error("Root element not found. Make sure there's a div with id='root' in your HTML.");
+  throw new Error(
+    "Root element not found. Make sure there's a div with id='root' in your HTML.",
+  );
 }
 
 // In development, prevent multiple createRoot calls during HMR
@@ -163,7 +165,7 @@ try {
     createRoot(container).render(<App />);
   }
 } catch (error) {
-  console.error('Failed to render React app:', error);
+  console.error("Failed to render React app:", error);
   // Fallback error display
   container.innerHTML = `
     <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">

@@ -45,21 +45,20 @@ export default function Signup() {
   };
 
   const testSignup = async () => {
-    console.log('🧪 Running signup test...');
+    console.log("🧪 Running signup test...");
     try {
       const testEmail = `test-${Date.now()}@example.com`;
-      const testPassword = 'TestPassword123!';
-      const testName = 'Test User';
+      const testPassword = "TestPassword123!";
+      const testName = "Test User";
 
-      console.log('Testing with:', { testEmail, testPassword, testName });
+      console.log("Testing with:", { testEmail, testPassword, testName });
 
       const result = await signUp(testEmail, testPassword, testName);
-      console.log('Test result:', result);
+      console.log("Test result:", result);
     } catch (error) {
-      console.error('Test failed:', error);
+      console.error("Test failed:", error);
     }
   };
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,25 +87,25 @@ export default function Signup() {
     }
 
     try {
-      console.log('🚀 Starting signup process...');
-      console.log('- Email:', email);
-      console.log('- Full Name:', fullName);
-      console.log('- Password length:', password.length);
+      console.log("🚀 Starting signup process...");
+      console.log("- Email:", email);
+      console.log("- Full Name:", fullName);
+      console.log("- Password length:", password.length);
 
       const { error } = await signUp(email, password, fullName);
 
-      console.log('📋 Signup result received');
-      console.log('- Has error:', !!error);
+      console.log("📋 Signup result received");
+      console.log("- Has error:", !!error);
 
       if (error) {
-        console.log('❌ Signup failed with error:', error);
+        console.log("❌ Signup failed with error:", error);
         setError(error.message);
       } else {
-        console.log('✅ Signup successful!');
+        console.log("✅ Signup successful!");
         setSuccess(true);
       }
     } catch (err) {
-      console.error('💥 Unexpected error during signup:', err);
+      console.error("💥 Unexpected error during signup:", err);
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);
@@ -324,7 +323,8 @@ export default function Signup() {
                   🧪 Test Signup (Check Console)
                 </Button>
                 <p className="text-xs text-muted-foreground mt-1">
-                  This will test signup with a random email and log details to console
+                  This will test signup with a random email and log details to
+                  console
                 </p>
               </div>
 

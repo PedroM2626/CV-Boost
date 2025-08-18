@@ -29,10 +29,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Debug: Log environment info on initialization
-    console.log('🔧 AuthProvider initialized');
-    console.log('- Environment:', import.meta.env.MODE);
-    console.log('- Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
-    console.log('- API key (first 20 chars):', import.meta.env.VITE_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
+    console.log("🔧 AuthProvider initialized");
+    console.log("- Environment:", import.meta.env.MODE);
+    console.log("- Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
+    console.log(
+      "- API key (first 20 chars):",
+      import.meta.env.VITE_SUPABASE_ANON_KEY?.substring(0, 20) + "...",
+    );
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -75,12 +78,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         // Provide more specific error messages
         let errorMessage = error.message;
-        if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
-          errorMessage = "There's an issue with the application configuration. Please contact support.";
-        } else if (error.message.includes('Invalid login credentials')) {
-          errorMessage = "Invalid email or password. Please check your credentials and try again.";
-        } else if (error.message.includes('Email not confirmed')) {
-          errorMessage = "Please check your email and click the verification link before signing in.";
+        if (
+          error.message.includes("Invalid API key") ||
+          error.message.includes("API key")
+        ) {
+          errorMessage =
+            "There's an issue with the application configuration. Please contact support.";
+        } else if (error.message.includes("Invalid login credentials")) {
+          errorMessage =
+            "Invalid email or password. Please check your credentials and try again.";
+        } else if (error.message.includes("Email not confirmed")) {
+          errorMessage =
+            "Please check your email and click the verification link before signing in.";
         }
 
         toast({
@@ -92,7 +101,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error };
     } catch (networkError: any) {
-      const errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
+      const errorMessage =
+        "Unable to connect to the server. Please check your internet connection and try again.";
       toast({
         title: "Connection error",
         description: errorMessage,
@@ -119,14 +129,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Provide more specific error messages
         let errorMessage = error.message;
 
-        if (error.message.includes('Invalid API key') || error.message.includes('API key')) {
-          errorMessage = "🔧 Supabase Configuration Required: Please go to your Supabase dashboard > Authentication > Settings and either disable 'Enable email confirmations' or configure an email provider.";
-        } else if (error.message.includes('User already registered')) {
-          errorMessage = "An account with this email already exists. Try signing in instead.";
-        } else if (error.message.includes('signup_disabled')) {
-          errorMessage = "Account creation is currently disabled. Please contact support.";
-        } else if (error.message.includes('email')) {
-          errorMessage = "Email configuration issue. Please check Supabase Auth settings.";
+        if (
+          error.message.includes("Invalid API key") ||
+          error.message.includes("API key")
+        ) {
+          errorMessage =
+            "🔧 Supabase Configuration Required: Please go to your Supabase dashboard > Authentication > Settings and either disable 'Enable email confirmations' or configure an email provider.";
+        } else if (error.message.includes("User already registered")) {
+          errorMessage =
+            "An account with this email already exists. Try signing in instead.";
+        } else if (error.message.includes("signup_disabled")) {
+          errorMessage =
+            "Account creation is currently disabled. Please contact support.";
+        } else if (error.message.includes("email")) {
+          errorMessage =
+            "Email configuration issue. Please check Supabase Auth settings.";
         }
 
         toast({
@@ -136,17 +153,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
 
         // For API key errors, also log the solution URL
-        if (error.message.includes('Invalid API key')) {
-          console.log('��� Quick fix: Go to https://app.supabase.com/project/wmkqurcudreptjrqpqpf/auth/users and disable email confirmations');
+        if (error.message.includes("Invalid API key")) {
+          console.log(
+            "��� Quick fix: Go to https://app.supabase.com/project/wmkqurcudreptjrqpqpf/auth/users and disable email confirmations",
+          );
         }
 
         // Log detailed error for debugging
-        console.error('Signup error details:');
-        console.error('- Message:', error.message);
-        console.error('- Status:', (error as any).status);
-        console.error('- Status Code:', (error as any).statusCode);
-        console.error('- Full error object:', JSON.stringify(error, null, 2));
-        console.error('- Error keys:', Object.keys(error));
+        console.error("Signup error details:");
+        console.error("- Message:", error.message);
+        console.error("- Status:", (error as any).status);
+        console.error("- Status Code:", (error as any).statusCode);
+        console.error("- Full error object:", JSON.stringify(error, null, 2));
+        console.error("- Error keys:", Object.keys(error));
       } else {
         toast({
           title: "Account created!",
@@ -156,12 +175,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error };
     } catch (networkError: any) {
-      console.error('Network/Exception error during signup:');
-      console.error('- Error message:', networkError?.message || 'Unknown error');
-      console.error('- Error type:', typeof networkError);
-      console.error('- Full error:', JSON.stringify(networkError, Object.getOwnPropertyNames(networkError), 2));
+      console.error("Network/Exception error during signup:");
+      console.error(
+        "- Error message:",
+        networkError?.message || "Unknown error",
+      );
+      console.error("- Error type:", typeof networkError);
+      console.error(
+        "- Full error:",
+        JSON.stringify(
+          networkError,
+          Object.getOwnPropertyNames(networkError),
+          2,
+        ),
+      );
 
-      const errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
+      const errorMessage =
+        "Unable to connect to the server. Please check your internet connection and try again.";
       toast({
         title: "Connection error",
         description: errorMessage,

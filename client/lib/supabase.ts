@@ -8,19 +8,22 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Validate that the environment variables look correct
-if (!supabaseUrl.includes('supabase.co')) {
-  console.warn('⚠️ Supabase URL may be incorrect:', supabaseUrl);
+if (!supabaseUrl.includes("supabase.co")) {
+  console.warn("⚠️ Supabase URL may be incorrect:", supabaseUrl);
 }
 
-if (!supabaseAnonKey.startsWith('eyJ')) {
-  console.warn('⚠️ Supabase anon key may be incorrect format');
+if (!supabaseAnonKey.startsWith("eyJ")) {
+  console.warn("⚠️ Supabase anon key may be incorrect format");
 }
 
 // Only log in development
 if (import.meta.env.DEV) {
-  console.log('✅ Supabase client configured successfully');
-  console.log('📍 Supabase URL:', supabaseUrl);
-  console.log('🔑 API Key (first 20 chars):', supabaseAnonKey.substring(0, 20) + '...');
+  console.log("✅ Supabase client configured successfully");
+  console.log("📍 Supabase URL:", supabaseUrl);
+  console.log(
+    "🔑 API Key (first 20 chars):",
+    supabaseAnonKey.substring(0, 20) + "...",
+  );
 }
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

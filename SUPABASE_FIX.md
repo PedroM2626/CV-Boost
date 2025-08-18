@@ -31,6 +31,7 @@ Se você quiser manter a confirmação de email:
 ## 🔧 Para Testar
 
 Depois de aplicar qualquer uma das soluções acima:
+
 1. Clique no botão "🔧 Debug Auth" na página de signup
 2. Verifique o console do navegador
 3. Tente criar uma conta novamente
