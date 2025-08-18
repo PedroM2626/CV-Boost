@@ -16,9 +16,12 @@ if (!supabaseAnonKey.startsWith('eyJ')) {
   console.warn('⚠️ Supabase anon key may be incorrect format');
 }
 
-console.log('✅ Supabase client configured successfully');
-console.log('📍 Supabase URL:', supabaseUrl);
-console.log('🔑 API Key (first 20 chars):', supabaseAnonKey.substring(0, 20) + '...');
+// Only log in development
+if (import.meta.env.DEV) {
+  console.log('✅ Supabase client configured successfully');
+  console.log('📍 Supabase URL:', supabaseUrl);
+  console.log('🔑 API Key (first 20 chars):', supabaseAnonKey.substring(0, 20) + '...');
+}
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Database Types
