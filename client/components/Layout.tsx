@@ -1,8 +1,24 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { FileText, Upload, Users, Zap, Menu, X, LogOut, Settings, User } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  FileText,
+  Upload,
+  Users,
+  Zap,
+  Menu,
+  X,
+  LogOut,
+  Settings,
+  User,
+} from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -65,11 +81,19 @@ export default function Layout({ children }: LayoutProps) {
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Button
+                      variant="ghost"
+                      className="relative h-8 w-8 rounded-full"
+                    >
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name} />
+                        <AvatarImage
+                          src={user.user_metadata?.avatar_url}
+                          alt={user.user_metadata?.full_name}
+                        />
                         <AvatarFallback>
-                          {user.user_metadata?.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                          {user.user_metadata?.full_name?.charAt(0) ||
+                            user.email?.charAt(0) ||
+                            "U"}
                         </AvatarFallback>
                       </Avatar>
                     </Button>
@@ -77,7 +101,9 @@ export default function Layout({ children }: LayoutProps) {
                   <DropdownMenuContent className="w-56" align="end" forceMount>
                     <div className="flex items-center justify-start gap-2 p-2">
                       <div className="flex flex-col space-y-1 leading-none">
-                        <p className="font-medium">{user.user_metadata?.full_name || 'User'}</p>
+                        <p className="font-medium">
+                          {user.user_metadata?.full_name || "User"}
+                        </p>
                         <p className="w-[200px] truncate text-sm text-muted-foreground">
                           {user.email}
                         </p>
@@ -97,7 +123,10 @@ export default function Layout({ children }: LayoutProps) {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => signOut()} className="flex items-center">
+                    <DropdownMenuItem
+                      onClick={() => signOut()}
+                      className="flex items-center"
+                    >
                       <LogOut className="mr-2 h-4 w-4" />
                       Sign Out
                     </DropdownMenuItem>
@@ -158,17 +187,33 @@ export default function Layout({ children }: LayoutProps) {
                 {user ? (
                   <>
                     <div className="px-3 py-2 text-sm">
-                      <p className="font-medium">{user.user_metadata?.full_name || 'User'}</p>
+                      <p className="font-medium">
+                        {user.user_metadata?.full_name || "User"}
+                      </p>
                       <p className="text-muted-foreground">{user.email}</p>
                     </div>
-                    <Button variant="ghost" className="w-full justify-start" asChild>
-                      <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      asChild
+                    >
+                      <Link
+                        to="/dashboard"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
                         <User className="mr-2 h-4 w-4" />
                         Dashboard
                       </Link>
                     </Button>
-                    <Button variant="ghost" className="w-full justify-start" asChild>
-                      <Link to="/settings" onClick={() => setMobileMenuOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      asChild
+                    >
+                      <Link
+                        to="/settings"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
                         <Settings className="mr-2 h-4 w-4" />
                         Settings
                       </Link>
@@ -187,13 +232,23 @@ export default function Layout({ children }: LayoutProps) {
                   </>
                 ) : (
                   <>
-                    <Button variant="ghost" className="w-full justify-start" asChild>
-                      <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      asChild
+                    >
+                      <Link
+                        to="/login"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
                         Sign In
                       </Link>
                     </Button>
                     <Button className="w-full" asChild>
-                      <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                      <Link
+                        to="/signup"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
                         Get Started
                       </Link>
                     </Button>
@@ -222,26 +277,63 @@ export default function Layout({ children }: LayoutProps) {
                 </span>
               </div>
               <p className="text-gray-600 text-sm max-w-md">
-                Transform your career with AI-powered resume building, improvement, 
-                and analysis tools. Get hired faster with professional resumes.
+                Transform your career with AI-powered resume building,
+                improvement, and analysis tools. Get hired faster with
+                professional resumes.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Product</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                Product
+              </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link to="/builder" className="hover:text-primary">Resume Builder</Link></li>
-                <li><Link to="/improve" className="hover:text-primary">Resume Improvement</Link></li>
-                <li><Link to="/recruiters" className="hover:text-primary">For Recruiters</Link></li>
-                <li><Link to="/pricing" className="hover:text-primary">Pricing</Link></li>
+                <li>
+                  <Link to="/builder" className="hover:text-primary">
+                    Resume Builder
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/improve" className="hover:text-primary">
+                    Resume Improvement
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recruiters" className="hover:text-primary">
+                    For Recruiters
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pricing" className="hover:text-primary">
+                    Pricing
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Support</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                Support
+              </h3>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link to="/help" className="hover:text-primary">Help Center</Link></li>
-                <li><Link to="/contact" className="hover:text-primary">Contact Us</Link></li>
-                <li><Link to="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="hover:text-primary">Terms of Service</Link></li>
+                <li>
+                  <Link to="/help" className="hover:text-primary">
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-primary">
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="hover:text-primary">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="hover:text-primary">
+                    Terms of Service
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

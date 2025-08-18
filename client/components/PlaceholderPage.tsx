@@ -1,6 +1,12 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Construction, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -10,10 +16,10 @@ interface PlaceholderPageProps {
   comingSoon?: boolean;
 }
 
-export default function PlaceholderPage({ 
-  title, 
-  description, 
-  comingSoon = true 
+export default function PlaceholderPage({
+  title,
+  description,
+  comingSoon = true,
 }: PlaceholderPageProps) {
   return (
     <Layout>
@@ -29,17 +35,19 @@ export default function PlaceholderPage({
             <CardDescription className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               {description}
             </CardDescription>
-            
+
             {comingSoon && (
               <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-8 max-w-md mx-auto">
-                <h3 className="font-semibold text-primary mb-2">Coming Soon!</h3>
+                <h3 className="font-semibold text-primary mb-2">
+                  Coming Soon!
+                </h3>
                 <p className="text-sm text-gray-600">
-                  This feature is under development. Continue using our chat to request 
-                  this page to be built out with full functionality.
+                  This feature is under development. Continue using our chat to
+                  request this page to be built out with full functionality.
                 </p>
               </div>
             )}
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild>
                 <Link to="/">
@@ -48,9 +56,7 @@ export default function PlaceholderPage({
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/builder">
-                  Try Resume Builder
-                </Link>
+                <Link to="/builder">Try Resume Builder</Link>
               </Button>
             </div>
           </CardContent>

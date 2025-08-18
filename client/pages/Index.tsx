@@ -1,19 +1,25 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { 
-  FileText, 
-  Upload, 
-  Users, 
-  Zap, 
-  Star, 
-  CheckCircle, 
+import {
+  FileText,
+  Upload,
+  Users,
+  Zap,
+  Star,
+  CheckCircle,
   TrendingUp,
   Download,
   Shield,
-  Clock
+  Clock,
 } from "lucide-react";
 
 export default function Index() {
@@ -21,45 +27,50 @@ export default function Index() {
     {
       icon: FileText,
       title: "Professional Resume Builder",
-      description: "Create stunning resumes from scratch with our clean, ATS-friendly templates",
-      color: "from-blue-500 to-blue-600"
+      description:
+        "Create stunning resumes from scratch with our clean, ATS-friendly templates",
+      color: "from-blue-500 to-blue-600",
     },
     {
       icon: Zap,
       title: "AI-Powered Improvements",
-      description: "Upload your existing resume and get instant suggestions for better impact",
-      color: "from-purple-500 to-purple-600"
+      description:
+        "Upload your existing resume and get instant suggestions for better impact",
+      color: "from-purple-500 to-purple-600",
     },
     {
       icon: Users,
       title: "Recruiter Tools",
-      description: "Parse and analyze resumes efficiently with structured data extraction",
-      color: "from-green-500 to-green-600"
+      description:
+        "Parse and analyze resumes efficiently with structured data extraction",
+      color: "from-green-500 to-green-600",
     },
     {
       icon: Download,
       title: "Export Anywhere",
-      description: "Download your resumes as PDF or DOCX files, ready for any application",
-      color: "from-orange-500 to-orange-600"
-    }
+      description:
+        "Download your resumes as PDF or DOCX files, ready for any application",
+      color: "from-orange-500 to-orange-600",
+    },
   ];
 
   const benefits = [
     {
       icon: TrendingUp,
       title: "Increase Interview Chances",
-      description: "Get 3x more interviews with optimized, keyword-rich resumes"
+      description:
+        "Get 3x more interviews with optimized, keyword-rich resumes",
     },
     {
       icon: Clock,
       title: "Save Time",
-      description: "Build professional resumes in minutes, not hours"
+      description: "Build professional resumes in minutes, not hours",
     },
     {
       icon: Shield,
       title: "ATS-Friendly",
-      description: "All templates pass through Applicant Tracking Systems"
-    }
+      description: "All templates pass through Applicant Tracking Systems",
+    },
   ];
 
   const plans = [
@@ -72,9 +83,9 @@ export default function Index() {
         "1 resume",
         "Basic templates",
         "Basic suggestions",
-        "PDF export"
+        "PDF export",
       ],
-      popular: false
+      popular: false,
     },
     {
       name: "Pro",
@@ -86,9 +97,9 @@ export default function Index() {
         "Advanced templates",
         "AI-powered improvements",
         "PDF & DOCX export",
-        "Priority support"
+        "Priority support",
       ],
-      popular: true
+      popular: true,
     },
     {
       name: "Ultimate",
@@ -101,10 +112,10 @@ export default function Index() {
         "Bulk resume parsing",
         "Advanced analytics",
         "Custom branding",
-        "API access"
+        "API access",
       ],
-      popular: false
-    }
+      popular: false,
+    },
   ];
 
   return (
@@ -123,8 +134,9 @@ export default function Index() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Create professional resumes, get AI-powered improvements, and land more interviews. 
-              Join thousands of professionals who've boosted their careers with CV Boost.
+              Create professional resumes, get AI-powered improvements, and land
+              more interviews. Join thousands of professionals who've boosted
+              their careers with CV Boost.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild className="text-lg px-8 py-3">
@@ -133,7 +145,12 @@ export default function Index() {
                   Start Building Free
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild className="text-lg px-8 py-3">
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="text-lg px-8 py-3"
+              >
                 <Link to="/improve">
                   <Upload className="mr-2 h-5 w-5" />
                   Improve Existing Resume
@@ -162,17 +179,22 @@ export default function Index() {
               Everything You Need to Land Your Dream Job
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              From building resumes from scratch to improving existing ones, 
-              CV Boost has all the tools you need to stand out.
+              From building resumes from scratch to improving existing ones, CV
+              Boost has all the tools you need to stand out.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <Card
+                  key={index}
+                  className="border-0 shadow-lg hover:shadow-xl transition-shadow"
+                >
                   <CardHeader className="pb-4">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4`}>
+                    <div
+                      className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4`}
+                    >
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <CardTitle className="text-xl">{feature.title}</CardTitle>
@@ -208,9 +230,7 @@ export default function Index() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {benefit.description}
-                  </p>
+                  <p className="text-gray-600">{benefit.description}</p>
                 </div>
               );
             })}
@@ -231,7 +251,10 @@ export default function Index() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'border-primary shadow-xl scale-105' : 'border-gray-200'}`}>
+              <Card
+                key={index}
+                className={`relative ${plan.popular ? "border-primary shadow-xl scale-105" : "border-gray-200"}`}
+              >
                 {plan.popular && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary">
                     Most Popular
@@ -256,13 +279,15 @@ export default function Index() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
-                    className={`w-full ${plan.popular ? '' : 'variant-outline'}`}
-                    variant={plan.popular ? 'default' : 'outline'}
+                  <Button
+                    className={`w-full ${plan.popular ? "" : "variant-outline"}`}
+                    variant={plan.popular ? "default" : "outline"}
                     asChild
                   >
                     <Link to="/signup">
-                      {plan.name === 'Free' ? 'Get Started Free' : `Choose ${plan.name}`}
+                      {plan.name === "Free"
+                        ? "Get Started Free"
+                        : `Choose ${plan.name}`}
                     </Link>
                   </Button>
                 </CardContent>
@@ -279,10 +304,15 @@ export default function Index() {
             Ready to Boost Your Career?
           </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who've transformed their careers with CV Boost. 
-            Start building your winning resume today.
+            Join thousands of professionals who've transformed their careers
+            with CV Boost. Start building your winning resume today.
           </p>
-          <Button size="lg" variant="secondary" asChild className="text-lg px-8 py-3">
+          <Button
+            size="lg"
+            variant="secondary"
+            asChild
+            className="text-lg px-8 py-3"
+          >
             <Link to="/builder">
               <FileText className="mr-2 h-5 w-5" />
               Start Your Free Resume

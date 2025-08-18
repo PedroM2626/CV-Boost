@@ -1,28 +1,34 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState } from "react";
-import { 
-  Upload, 
-  FileText, 
-  Download, 
-  CheckCircle, 
+import {
+  Upload,
+  FileText,
+  Download,
+  CheckCircle,
   AlertTriangle,
   Zap,
   Target,
   TrendingUp,
-  Eye
+  Eye,
 } from "lucide-react";
 
 interface ImprovementSuggestion {
-  type: 'error' | 'warning' | 'suggestion';
+  type: "error" | "warning" | "suggestion";
   category: string;
   title: string;
   description: string;
-  impact: 'high' | 'medium' | 'low';
+  impact: "high" | "medium" | "low";
 }
 
 export default function ResumeImprovement() {
@@ -33,40 +39,45 @@ export default function ResumeImprovement() {
 
   const mockSuggestions: ImprovementSuggestion[] = [
     {
-      type: 'error',
-      category: 'Contact Information',
-      title: 'Missing Phone Number',
-      description: 'Your resume should include a phone number for easy contact.',
-      impact: 'high'
+      type: "error",
+      category: "Contact Information",
+      title: "Missing Phone Number",
+      description:
+        "Your resume should include a phone number for easy contact.",
+      impact: "high",
     },
     {
-      type: 'warning',
-      category: 'Professional Summary',
-      title: 'Weak Action Words',
-      description: 'Replace passive language with strong action verbs like "Led", "Developed", "Implemented".',
-      impact: 'medium'
+      type: "warning",
+      category: "Professional Summary",
+      title: "Weak Action Words",
+      description:
+        'Replace passive language with strong action verbs like "Led", "Developed", "Implemented".',
+      impact: "medium",
     },
     {
-      type: 'suggestion',
-      category: 'Work Experience',
-      title: 'Add Quantifiable Achievements',
-      description: 'Include specific numbers and metrics to demonstrate your impact (e.g., "Increased sales by 25%").',
-      impact: 'high'
+      type: "suggestion",
+      category: "Work Experience",
+      title: "Add Quantifiable Achievements",
+      description:
+        'Include specific numbers and metrics to demonstrate your impact (e.g., "Increased sales by 25%").',
+      impact: "high",
     },
     {
-      type: 'suggestion',
-      category: 'Skills Section',
-      title: 'Missing Industry Keywords',
-      description: 'Add relevant keywords like "Agile", "Scrum", "CI/CD" to improve ATS compatibility.',
-      impact: 'medium'
+      type: "suggestion",
+      category: "Skills Section",
+      title: "Missing Industry Keywords",
+      description:
+        'Add relevant keywords like "Agile", "Scrum", "CI/CD" to improve ATS compatibility.',
+      impact: "medium",
     },
     {
-      type: 'warning',
-      category: 'Formatting',
-      title: 'Inconsistent Date Format',
-      description: 'Use consistent date formatting throughout your resume (e.g., "Jan 2020 - Dec 2022").',
-      impact: 'low'
-    }
+      type: "warning",
+      category: "Formatting",
+      title: "Inconsistent Date Format",
+      description:
+        'Use consistent date formatting throughout your resume (e.g., "Jan 2020 - Dec 2022").',
+      impact: "low",
+    },
   ];
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,10 +86,10 @@ export default function ResumeImprovement() {
       setUploadedFile(file);
       setIsAnalyzing(true);
       setAnalysisProgress(0);
-      
+
       // Simulate analysis progress
       const interval = setInterval(() => {
-        setAnalysisProgress(prev => {
+        setAnalysisProgress((prev) => {
           if (prev >= 100) {
             clearInterval(interval);
             setIsAnalyzing(false);
@@ -93,25 +104,37 @@ export default function ResumeImprovement() {
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'high': return 'text-red-600 bg-red-50 border-red-200';
-      case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-      case 'low': return 'text-blue-600 bg-blue-50 border-blue-200';
-      default: return 'text-gray-600 bg-gray-50 border-gray-200';
+      case "high":
+        return "text-red-600 bg-red-50 border-red-200";
+      case "medium":
+        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+      case "low":
+        return "text-blue-600 bg-blue-50 border-blue-200";
+      default:
+        return "text-gray-600 bg-gray-50 border-gray-200";
     }
   };
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'error': return <AlertTriangle className="h-4 w-4 text-red-500" />;
-      case 'warning': return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
-      case 'suggestion': return <Zap className="h-4 w-4 text-blue-500" />;
-      default: return <CheckCircle className="h-4 w-4 text-green-500" />;
+      case "error":
+        return <AlertTriangle className="h-4 w-4 text-red-500" />;
+      case "warning":
+        return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
+      case "suggestion":
+        return <Zap className="h-4 w-4 text-blue-500" />;
+      default:
+        return <CheckCircle className="h-4 w-4 text-green-500" />;
     }
   };
 
-  const errorCount = mockSuggestions.filter(s => s.type === 'error').length;
-  const warningCount = mockSuggestions.filter(s => s.type === 'warning').length;
-  const suggestionCount = mockSuggestions.filter(s => s.type === 'suggestion').length;
+  const errorCount = mockSuggestions.filter((s) => s.type === "error").length;
+  const warningCount = mockSuggestions.filter(
+    (s) => s.type === "warning",
+  ).length;
+  const suggestionCount = mockSuggestions.filter(
+    (s) => s.type === "suggestion",
+  ).length;
 
   return (
     <Layout>
@@ -122,8 +145,8 @@ export default function ResumeImprovement() {
             Resume Improvement
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Upload your resume and get AI-powered suggestions to improve your chances 
-            of landing interviews. Supports PDF and DOCX formats.
+            Upload your resume and get AI-powered suggestions to improve your
+            chances of landing interviews. Supports PDF and DOCX formats.
           </p>
         </div>
 
@@ -143,7 +166,7 @@ export default function ResumeImprovement() {
                     Drag and drop your resume here, or click to browse
                   </p>
                 </div>
-                
+
                 <div className="space-y-4">
                   <label htmlFor="resume-upload" className="cursor-pointer">
                     <input
@@ -158,7 +181,7 @@ export default function ResumeImprovement() {
                       Choose File
                     </Button>
                   </label>
-                  
+
                   <p className="text-sm text-gray-500">
                     Supports PDF, DOCX, and DOC files up to 10MB
                   </p>
@@ -172,7 +195,9 @@ export default function ResumeImprovement() {
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Target className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">ATS Optimization</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  ATS Optimization
+                </h3>
                 <p className="text-sm text-gray-600">
                   Ensure your resume passes Applicant Tracking Systems
                 </p>
@@ -181,7 +206,9 @@ export default function ResumeImprovement() {
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="h-6 w-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Impact Analysis</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Impact Analysis
+                </h3>
                 <p className="text-sm text-gray-600">
                   Get suggestions to quantify your achievements
                 </p>
@@ -190,7 +217,9 @@ export default function ResumeImprovement() {
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Zap className="h-6 w-6 text-purple-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Instant Feedback</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Instant Feedback
+                </h3>
                 <p className="text-sm text-gray-600">
                   Receive immediate, actionable improvement suggestions
                 </p>
@@ -214,7 +243,9 @@ export default function ResumeImprovement() {
                   </p>
                   <div className="max-w-md mx-auto">
                     <Progress value={analysisProgress} className="mb-2" />
-                    <p className="text-sm text-gray-500">{analysisProgress}% complete</p>
+                    <p className="text-sm text-gray-500">
+                      {analysisProgress}% complete
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -231,25 +262,38 @@ export default function ResumeImprovement() {
                         Analysis Complete
                       </CardTitle>
                       <CardDescription>
-                        Found {mockSuggestions.length} suggestions to improve your resume
+                        Found {mockSuggestions.length} suggestions to improve
+                        your resume
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-3 gap-4 mb-6">
                         <div className="text-center p-4 bg-red-50 rounded-lg">
-                          <div className="text-2xl font-bold text-red-600">{errorCount}</div>
-                          <div className="text-sm text-red-600">Critical Issues</div>
+                          <div className="text-2xl font-bold text-red-600">
+                            {errorCount}
+                          </div>
+                          <div className="text-sm text-red-600">
+                            Critical Issues
+                          </div>
                         </div>
                         <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                          <div className="text-2xl font-bold text-yellow-600">{warningCount}</div>
-                          <div className="text-sm text-yellow-600">Warnings</div>
+                          <div className="text-2xl font-bold text-yellow-600">
+                            {warningCount}
+                          </div>
+                          <div className="text-sm text-yellow-600">
+                            Warnings
+                          </div>
                         </div>
                         <div className="text-center p-4 bg-blue-50 rounded-lg">
-                          <div className="text-2xl font-bold text-blue-600">{suggestionCount}</div>
-                          <div className="text-sm text-blue-600">Suggestions</div>
+                          <div className="text-2xl font-bold text-blue-600">
+                            {suggestionCount}
+                          </div>
+                          <div className="text-sm text-blue-600">
+                            Suggestions
+                          </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex gap-4">
                         <Button>
                           <Download className="h-4 w-4 mr-2" />
@@ -268,23 +312,34 @@ export default function ResumeImprovement() {
                     <CardHeader>
                       <CardTitle>Improvement Suggestions</CardTitle>
                       <CardDescription>
-                        Review and apply these suggestions to enhance your resume
+                        Review and apply these suggestions to enhance your
+                        resume
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {mockSuggestions.map((suggestion, index) => (
-                        <Alert key={index} className={getImpactColor(suggestion.impact)}>
+                        <Alert
+                          key={index}
+                          className={getImpactColor(suggestion.impact)}
+                        >
                           <div className="flex items-start gap-3">
                             {getTypeIcon(suggestion.type)}
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <h4 className="font-medium">{suggestion.title}</h4>
+                                <h4 className="font-medium">
+                                  {suggestion.title}
+                                </h4>
                                 <Badge variant="outline" className="text-xs">
                                   {suggestion.category}
                                 </Badge>
-                                <Badge 
-                                  variant={suggestion.impact === 'high' ? 'destructive' : 
-                                          suggestion.impact === 'medium' ? 'default' : 'secondary'}
+                                <Badge
+                                  variant={
+                                    suggestion.impact === "high"
+                                      ? "destructive"
+                                      : suggestion.impact === "medium"
+                                        ? "default"
+                                        : "secondary"
+                                  }
                                   className="text-xs"
                                 >
                                   {suggestion.impact} impact
@@ -306,9 +361,7 @@ export default function ResumeImprovement() {
                   <Card>
                     <CardHeader>
                       <CardTitle>Your Resume</CardTitle>
-                      <CardDescription>
-                        {uploadedFile?.name}
-                      </CardDescription>
+                      <CardDescription>{uploadedFile?.name}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="aspect-[3/4] bg-gray-100 rounded-lg flex items-center justify-center">
@@ -326,7 +379,9 @@ export default function ResumeImprovement() {
                     </CardHeader>
                     <CardContent>
                       <div className="text-center mb-4">
-                        <div className="text-4xl font-bold text-primary mb-1">78</div>
+                        <div className="text-4xl font-bold text-primary mb-1">
+                          78
+                        </div>
                         <div className="text-sm text-gray-600">out of 100</div>
                       </div>
                       <Progress value={78} className="mb-4" />
@@ -336,11 +391,15 @@ export default function ResumeImprovement() {
                     </CardContent>
                   </Card>
 
-                  <Button variant="outline" className="w-full" onClick={() => {
-                    setUploadedFile(null);
-                    setAnalysisComplete(false);
-                    setAnalysisProgress(0);
-                  }}>
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => {
+                      setUploadedFile(null);
+                      setAnalysisComplete(false);
+                      setAnalysisProgress(0);
+                    }}
+                  >
                     Upload Different Resume
                   </Button>
                 </div>

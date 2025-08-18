@@ -1,27 +1,39 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import { 
-  FileText, 
-  Download, 
-  Eye, 
+import {
+  FileText,
+  Download,
+  Eye,
   Plus,
   Trash2,
   GripVertical,
   Star,
-  Crown
+  Crown,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ResumeSection {
   id: string;
-  type: 'personal' | 'summary' | 'experience' | 'education' | 'skills' | 'certifications';
+  type:
+    | "personal"
+    | "summary"
+    | "experience"
+    | "education"
+    | "skills"
+    | "certifications";
   title: string;
   content: any;
 }
@@ -29,46 +41,46 @@ interface ResumeSection {
 export default function ResumeBuilder() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [resumeSections, setResumeSections] = useState<ResumeSection[]>([
-    { id: '1', type: 'personal', title: 'Personal Information', content: {} },
-    { id: '2', type: 'summary', title: 'Professional Summary', content: '' },
-    { id: '3', type: 'experience', title: 'Work Experience', content: [] },
-    { id: '4', type: 'education', title: 'Education', content: [] },
-    { id: '5', type: 'skills', title: 'Skills', content: [] },
+    { id: "1", type: "personal", title: "Personal Information", content: {} },
+    { id: "2", type: "summary", title: "Professional Summary", content: "" },
+    { id: "3", type: "experience", title: "Work Experience", content: [] },
+    { id: "4", type: "education", title: "Education", content: [] },
+    { id: "5", type: "skills", title: "Skills", content: [] },
   ]);
 
   const templates = [
     {
-      id: 'modern',
-      name: 'Modern Professional',
-      description: 'Clean and contemporary design perfect for tech roles',
-      preview: '/api/placeholder/300/400',
+      id: "modern",
+      name: "Modern Professional",
+      description: "Clean and contemporary design perfect for tech roles",
+      preview: "/api/placeholder/300/400",
       isPremium: false,
-      color: 'blue'
+      color: "blue",
     },
     {
-      id: 'classic',
-      name: 'Classic Executive',
-      description: 'Traditional format ideal for corporate positions',
-      preview: '/api/placeholder/300/400',
+      id: "classic",
+      name: "Classic Executive",
+      description: "Traditional format ideal for corporate positions",
+      preview: "/api/placeholder/300/400",
       isPremium: false,
-      color: 'gray'
+      color: "gray",
     },
     {
-      id: 'creative',
-      name: 'Creative Designer',
-      description: 'Stand out with this creative and colorful template',
-      preview: '/api/placeholder/300/400',
+      id: "creative",
+      name: "Creative Designer",
+      description: "Stand out with this creative and colorful template",
+      preview: "/api/placeholder/300/400",
       isPremium: true,
-      color: 'purple'
+      color: "purple",
     },
     {
-      id: 'minimal',
-      name: 'Minimal Clean',
-      description: 'Simple and elegant design that highlights content',
-      preview: '/api/placeholder/300/400',
+      id: "minimal",
+      name: "Minimal Clean",
+      description: "Simple and elegant design that highlights content",
+      preview: "/api/placeholder/300/400",
       isPremium: true,
-      color: 'green'
-    }
+      color: "green",
+    },
   ];
 
   const handleTemplateSelect = (templateId: string) => {
@@ -85,16 +97,16 @@ export default function ResumeBuilder() {
               Choose Your Resume Template
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Start with a professional template designed to pass ATS systems and impress recruiters.
-              All templates are fully customizable.
+              Start with a professional template designed to pass ATS systems
+              and impress recruiters. All templates are fully customizable.
             </p>
           </div>
 
           {/* Template Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {templates.map((template) => (
-              <Card 
-                key={template.id} 
+              <Card
+                key={template.id}
                 className="relative cursor-pointer hover:shadow-lg transition-shadow group"
                 onClick={() => handleTemplateSelect(template.id)}
               >
@@ -106,7 +118,9 @@ export default function ResumeBuilder() {
                 )}
                 <CardHeader className="p-0">
                   <div className="aspect-[3/4] bg-gray-100 rounded-t-lg flex items-center justify-center">
-                    <div className={`w-3/4 h-5/6 bg-white shadow-md rounded border-l-4 border-${template.color}-500`}>
+                    <div
+                      className={`w-3/4 h-5/6 bg-white shadow-md rounded border-l-4 border-${template.color}-500`}
+                    >
                       <div className="p-4 space-y-2">
                         <div className="h-3 bg-gray-300 rounded w-2/3"></div>
                         <div className="h-2 bg-gray-200 rounded w-full"></div>
@@ -121,11 +135,13 @@ export default function ResumeBuilder() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-lg mb-2">{template.name}</CardTitle>
+                  <CardTitle className="text-lg mb-2">
+                    {template.name}
+                  </CardTitle>
                   <CardDescription className="text-sm">
                     {template.description}
                   </CardDescription>
-                  <Button 
+                  <Button
                     className="w-full mt-4 group-hover:bg-primary group-hover:text-white transition-colors"
                     variant="outline"
                   >
@@ -155,7 +171,7 @@ export default function ResumeBuilder() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Resume Builder</h1>
             <p className="text-gray-600 mt-1">
-              Template: {templates.find(t => t.id === selectedTemplate)?.name}
+              Template: {templates.find((t) => t.id === selectedTemplate)?.name}
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -179,7 +195,7 @@ export default function ResumeBuilder() {
                 <TabsTrigger value="experience">Experience</TabsTrigger>
                 <TabsTrigger value="education">Education</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="personal" className="space-y-6">
                 <Card>
                   <CardHeader>
@@ -203,7 +219,11 @@ export default function ResumeBuilder() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="john@example.com" />
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="john@example.com"
+                        />
                       </div>
                       <div>
                         <Label htmlFor="phone">Phone</Label>
@@ -216,8 +236,8 @@ export default function ResumeBuilder() {
                     </div>
                     <div>
                       <Label htmlFor="summary">Professional Summary</Label>
-                      <Textarea 
-                        id="summary" 
+                      <Textarea
+                        id="summary"
                         placeholder="Write a brief summary of your professional background..."
                         rows={4}
                       />
@@ -249,7 +269,10 @@ export default function ResumeBuilder() {
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="jobTitle">Job Title</Label>
-                          <Input id="jobTitle" placeholder="Software Engineer" />
+                          <Input
+                            id="jobTitle"
+                            placeholder="Software Engineer"
+                          />
                         </div>
                         <div>
                           <Label htmlFor="company">Company</Label>
@@ -263,13 +286,17 @@ export default function ResumeBuilder() {
                         </div>
                         <div>
                           <Label htmlFor="endDate">End Date</Label>
-                          <Input id="endDate" type="month" placeholder="Current" />
+                          <Input
+                            id="endDate"
+                            type="month"
+                            placeholder="Current"
+                          />
                         </div>
                       </div>
                       <div>
                         <Label htmlFor="description">Description</Label>
-                        <Textarea 
-                          id="description" 
+                        <Textarea
+                          id="description"
                           placeholder="Describe your responsibilities and achievements..."
                           rows={3}
                         />
@@ -302,7 +329,10 @@ export default function ResumeBuilder() {
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="degree">Degree</Label>
-                          <Input id="degree" placeholder="Bachelor of Science" />
+                          <Input
+                            id="degree"
+                            placeholder="Bachelor of Science"
+                          />
                         </div>
                         <div>
                           <Label htmlFor="major">Major/Field</Label>
@@ -315,8 +345,14 @@ export default function ResumeBuilder() {
                           <Input id="school" placeholder="University Name" />
                         </div>
                         <div>
-                          <Label htmlFor="graduationYear">Graduation Year</Label>
-                          <Input id="graduationYear" type="number" placeholder="2020" />
+                          <Label htmlFor="graduationYear">
+                            Graduation Year
+                          </Label>
+                          <Input
+                            id="graduationYear"
+                            type="number"
+                            placeholder="2020"
+                          />
                         </div>
                       </div>
                     </div>
@@ -341,8 +377,12 @@ export default function ResumeBuilder() {
                     <div className="space-y-6">
                       {/* Header */}
                       <div className="text-center border-b pb-4">
-                        <h1 className="text-2xl font-bold text-gray-900">John Doe</h1>
-                        <p className="text-lg text-gray-600">Software Engineer</p>
+                        <h1 className="text-2xl font-bold text-gray-900">
+                          John Doe
+                        </h1>
+                        <p className="text-lg text-gray-600">
+                          Software Engineer
+                        </p>
                         <div className="flex justify-center gap-4 text-sm text-gray-500 mt-2">
                           <span>john@example.com</span>
                           <span>•</span>
@@ -354,24 +394,36 @@ export default function ResumeBuilder() {
 
                       {/* Summary */}
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Professional Summary</h2>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                          Professional Summary
+                        </h2>
                         <p className="text-gray-700 text-sm leading-relaxed">
-                          Experienced software engineer with 5+ years developing scalable web applications...
+                          Experienced software engineer with 5+ years developing
+                          scalable web applications...
                         </p>
                       </div>
 
                       {/* Experience */}
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Experience</h2>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                          Experience
+                        </h2>
                         <div className="space-y-4">
                           <div>
                             <div className="flex justify-between items-start mb-1">
-                              <h3 className="font-medium text-gray-900">Senior Software Engineer</h3>
-                              <span className="text-sm text-gray-500">2020 - Present</span>
+                              <h3 className="font-medium text-gray-900">
+                                Senior Software Engineer
+                              </h3>
+                              <span className="text-sm text-gray-500">
+                                2020 - Present
+                              </span>
                             </div>
-                            <p className="text-sm text-gray-600 mb-2">Tech Corp, San Francisco, CA</p>
+                            <p className="text-sm text-gray-600 mb-2">
+                              Tech Corp, San Francisco, CA
+                            </p>
                             <p className="text-sm text-gray-700">
-                              Led development of microservices architecture serving 1M+ users...
+                              Led development of microservices architecture
+                              serving 1M+ users...
                             </p>
                           </div>
                         </div>
@@ -379,13 +431,19 @@ export default function ResumeBuilder() {
 
                       {/* Education */}
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Education</h2>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                          Education
+                        </h2>
                         <div>
                           <div className="flex justify-between items-start mb-1">
-                            <h3 className="font-medium text-gray-900">Bachelor of Science in Computer Science</h3>
+                            <h3 className="font-medium text-gray-900">
+                              Bachelor of Science in Computer Science
+                            </h3>
                             <span className="text-sm text-gray-500">2020</span>
                           </div>
-                          <p className="text-sm text-gray-600">University of Technology</p>
+                          <p className="text-sm text-gray-600">
+                            University of Technology
+                          </p>
                         </div>
                       </div>
                     </div>
