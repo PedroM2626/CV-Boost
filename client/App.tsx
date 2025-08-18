@@ -28,113 +28,115 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route
-              path="/builder"
-              element={
-                <ProtectedRoute>
-                  <ResumeBuilder />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/improve"
-              element={
-                <ProtectedRoute>
-                  <ResumeImprovement />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/recruiters"
-              element={
-                <ProtectedRoute>
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route
+                path="/builder"
+                element={
+                  <ProtectedRoute>
+                    <ResumeBuilder />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/improve"
+                element={
+                  <ProtectedRoute>
+                    <ResumeImprovement />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/recruiters"
+                element={
+                  <ProtectedRoute>
+                    <PlaceholderPage
+                      title="Recruiter Dashboard"
+                      description="Upload and analyze multiple resumes with our advanced parsing tools. Extract structured data and find the best candidates faster."
+                    />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/pricing"
+                element={
                   <PlaceholderPage
-                    title="Recruiter Dashboard"
-                    description="Upload and analyze multiple resumes with our advanced parsing tools. Extract structured data and find the best candidates faster."
+                    title="Pricing Plans"
+                    description="Choose the perfect plan for your needs. Start free and upgrade as you grow your career or business."
                   />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/pricing"
-              element={
-                <PlaceholderPage
-                  title="Pricing Plans"
-                  description="Choose the perfect plan for your needs. Start free and upgrade as you grow your career or business."
-                />
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <Settings />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/help"
-              element={
-                <PlaceholderPage
-                  title="Help Center"
-                  description="Find answers to common questions and learn how to make the most of CV Boost's features."
-                />
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <PlaceholderPage
-                  title="Contact Us"
-                  description="Have questions or need support? We're here to help you succeed in your career journey."
-                />
-              }
-            />
-            <Route
-              path="/privacy"
-              element={
-                <PlaceholderPage
-                  title="Privacy Policy"
-                  description="Learn how we protect your personal information and resume data with industry-leading security."
-                />
-              }
-            />
-            <Route
-              path="/terms"
-              element={
-                <PlaceholderPage
-                  title="Terms of Service"
-                  description="Review our terms and conditions for using CV Boost's resume building and improvement services."
-                />
-              }
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/help"
+                element={
+                  <PlaceholderPage
+                    title="Help Center"
+                    description="Find answers to common questions and learn how to make the most of CV Boost's features."
+                  />
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <PlaceholderPage
+                    title="Contact Us"
+                    description="Have questions or need support? We're here to help you succeed in your career journey."
+                  />
+                }
+              />
+              <Route
+                path="/privacy"
+                element={
+                  <PlaceholderPage
+                    title="Privacy Policy"
+                    description="Learn how we protect your personal information and resume data with industry-leading security."
+                  />
+                }
+              />
+              <Route
+                path="/terms"
+                element={
+                  <PlaceholderPage
+                    title="Terms of Service"
+                    description="Review our terms and conditions for using CV Boost's resume building and improvement services."
+                  />
+                }
+              />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+}
 
 // Handle React 18 createRoot properly for development and production
 const container = document.getElementById("root");
